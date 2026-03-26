@@ -23,10 +23,10 @@ This repository publishes a local/custom TFLint plugin. Build it locally for dev
 You can install the plugin with `tflint --init`. Declare a config in `.tflint.hcl` as follows:
 
 ```hcl
-plugin "tflint-ruleset-trailing-comma" {
+plugin "trailing-comma" {
   enabled = true
 
-  version = "0.1.0"
+  version = "0.1.1" # use latest release: https://github.com/Nitive/tflint-ruleset-trailing-comma/releases/tag/v0.1.1
   source  = "github.com/Nitive/tflint-ruleset-trailing-comma"
 
   signing_key = <<-KEY

@@ -1,4 +1,4 @@
-module github.com/terraform-linters/tflint-ruleset-template
+module github.com/Nitive/tflint-ruleset-trailing-comma
 
 go 1.26.1
 

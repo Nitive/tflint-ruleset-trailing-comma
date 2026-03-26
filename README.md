@@ -1,7 +1,14 @@
-# TFLint Ruleset Template
-[![Build Status](https://github.com/terraform-linters/tflint-ruleset-template/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/terraform-linters/tflint-ruleset-template/actions)
+# TFLint Ruleset Trailing Comma
+[![Build Status](https://github.com/Nitive/tflint-ruleset-trailing-comma/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Nitive/tflint-ruleset-trailing-comma/actions)
 
-This is a template repository for building a custom ruleset. You can create a plugin repository from "Use this template". See also [Writing Plugins](https://github.com/terraform-linters/tflint/blob/master/docs/developer-guide/plugins.md).
+This plugin enforces a compact comma style for Terraform expressions:
+
+- Multiline lists and multiline function calls must end with a trailing comma.
+- Single-line lists and single-line function calls must not end with a trailing comma.
+- Multiline maps must not contain commas.
+- Single-line maps may use commas between entries, but must not end with a trailing comma.
+
+See also [Writing Plugins](https://github.com/terraform-linters/tflint/blob/master/docs/developer-guide/plugins.md).
 
 ## Requirements
 
@@ -10,16 +17,16 @@ This is a template repository for building a custom ruleset. You can create a pl
 
 ## Installation
 
-TODO: This template repository does not contain release binaries, so this installation will not work. Please rewrite for your repository. See the "Building the plugin" section to get this template ruleset working.
+This repository publishes a local/custom TFLint plugin. Build it locally for development, or use GitHub releases once you wire publishing for your repo.
 
 You can install the plugin with `tflint --init`. Declare a config in `.tflint.hcl` as follows:
 
 ```hcl
-plugin "template" {
+plugin "tflint-ruleset-trailing-comma" {
   enabled = true
 
   version = "0.1.0"
-  source  = "github.com/terraform-linters/tflint-ruleset-template"
+  source  = "github.com/Nitive/tflint-ruleset-trailing-comma"
 }
 ```
 
@@ -27,10 +34,8 @@ plugin "template" {
 
 |Name|Description|Severity|Enabled|Link|
 | --- | --- | --- | --- | --- |
-|aws_instance_example_type|Example rule for accessing and evaluating top-level attributes|ERROR|✔||
-|aws_s3_bucket_example_lifecycle_rule|Example rule for accessing top-level/nested blocks and attributes under the blocks|ERROR|✔||
-|google_compute_ssl_policy|Example rule with a custom rule config|WARNING|✔||
-|terraform_backend_type|Example rule for accessing other than resources|ERROR|✔||
+|multiline_trailing_comma|Enforce trailing commas for multiline lists and function calls, while forbidding them on single-line forms|ERROR|✔||
+|multiline_map_no_comma|Forbid commas in multiline maps and trailing commas in single-line maps|ERROR|✔||
 
 ## Building the plugin
 
@@ -50,7 +55,7 @@ You can run the built plugin like the following:
 
 ```
 $ cat << EOS > .tflint.hcl
-plugin "template" {
+plugin "tflint-ruleset-trailing-comma" {
   enabled = true
 }
 EOS
